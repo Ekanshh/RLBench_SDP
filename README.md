@@ -12,7 +12,7 @@ SDP course project. In this project we have to create a task with Toyota HSR rob
     - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$COPPELIASIM_ROOT
     - export QT_QPA_PLATFORM_PLUGIN_PATH=$COPPELIASIM_ROOT
 
-- Now clone Pyrep directory
+- Now clone Pyrep directory from https://github.com/stepjam/PyRep
 - Now create new conda environment of the name “SDP” by using: 
     - conda create --name SDP python=3.8 --channel pkgs/main
     - conda activate SDP
