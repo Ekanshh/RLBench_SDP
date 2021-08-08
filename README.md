@@ -1,33 +1,39 @@
 # RLBench_SDP
-SDP course project. In this project we have to create a task with Toyota HSR robot in RLBench
 
-## Process of downloading all dependencies.
+This repository contains the project "RLBench: Mobile Manipulator
+Extension" to fulfill the requirements of the course-work 'Software Development Project' at Hochschule Bonn-Rhein-Sieg
 
-- This project assumes that
-  -  the pc contains ubuntu 16.04, 18.04 or 20.04
-  -  Anconda is already installed.
-  -  Any variables related to Coppelaisim are not present in the .bashrc file.
+Project Advisors:	
+- Prof. Dr. Nico Hochgeschwender
+- Alex Mitrevski
+
+Team Members:	
+- Syed Musharraf Ali
+- Ekansh Sharma 
+- Hamza Ullah Khan 
 
 
-- clone this repository using "https://github.com/musharrafleo95/RLBench_SDP.git"
+## How to run?
 
+- Pre-requisites: This project assume the following system specification/software components installation:
+  -  Ubuntu 16.04, 18.04 or 20.04
+  -  Anaconda
+  -  No prior installation of CoppeliaSim (If installed already, edit the .bashrc file to delete the existing COPPELIASIM_ROOT path variable)
 
-- go to this repository folder using 
-  - "cd temp_sdp"
+- Clone this repository using: 
+	`https://github.com/musharrafleo95/RLBench_SDP.git`
 
-- open terminal in the repository folder and run 
-  - "./setup.sh"
+- Go to this repository directory:
+	`cd RLBench_SDP`
 
-- After the setup is finished activate the conda environment using the following command in the terminal 
-  - "conda activate RLBench_SDP"
+- Open terminal inside the repository directory and run:
+	`./setup.sh` 
 
-- Goto RLBench tools folder by 
-  - "cd RLBench/tools"
+- Now in the existing terminal, run the following commands:
 
-- Now in this folder run:
-  - “Python3 task_builder.py”
-  - Write “test_hsr_task.py” and enter
-  - Write “+” and enter
-  - Write “d” and enter
+  - `Python3 task_builder.py`
+  - Enter the task name as: `test_hsr_task.py` and press Enter
+  - Wait for the task to load and then in the terminal enter '+' to run the simulation
+  - Enter `d` to see the demo in CoppeliaSim
 
 - Now the task will be running and the HSR robot arm will be reaching the ball in the environment.
