@@ -111,7 +111,7 @@ if [[ '$find . -maxdepth 1 -type f -iname "CoppeliaSim*"' = "./CoppeliaSim*" ]];
         echo "CoppeliaSim is already installed"
 else
 	download_coppeliasim 
-	path=$PWD/CoppeliaSim
+        path=$PWD/CoppeliaSim
 	echo export COPPELIASIM_ROOT=$path >> ~/.bashrc 
 	echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$COPPELIASIM_ROOT' >> ~/.bashrc
 	echo 'export QT_QPA_PLATFORM_PLUGIN_PATH=$COPPELIASIM_ROOT' >> ~/.bashrc
@@ -129,10 +129,12 @@ else
 	cd ./PyRep/
 	source ~/.bashrc
 	source ~/anaconda3/etc/profile.d/conda.sh
-    	conda activate RLBench_SDP
+    	eval "$(conda shell.bash hook)"
+	conda activate RLBench_SDP
 	pip3 install -r requirements.txt
 	source ~/.bashrc
 	source ~/anaconda3/etc/profile.d/conda.sh
+	eval "$(conda shell.bash hook)"
 	conda activate RLBench_SDP
 	pip3 install .
 	cd ..
@@ -197,7 +199,14 @@ done
 rm -rf ./temp
 
 
-fancy_print "SUCCESS"
-	
+fancy_print "All nPackage Installation: SUCCESS"
+
+fancy_print "Running RLBench Toyota HSR task"
+
+source ~/.bashrc
+source ~/anaconda3/etc/profile.d/conda.sh
+eval "$(conda shell.bash hook)"
+conda activate RLBench_SDP
+cd RLBench/tools/
 
 
