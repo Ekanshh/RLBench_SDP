@@ -9,7 +9,7 @@ SDP course project. In this project we have to create a task with Toyota HSR rob
   -  Any variables related to Coppelaisim are not present in the .bashrc file.
 
 
-- clone this repository using "git clone https://github.com/Ekanshh/temp_sdp.git"
+- clone this repository using "https://github.com/musharrafleo95/RLBench_SDP.git"
 
 
 - go to this repository folder using 
