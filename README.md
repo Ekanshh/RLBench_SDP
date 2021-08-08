@@ -33,7 +33,7 @@ Team Members:
 
   - `Python3 task_builder.py`
   - Enter the task name as: `test_hsr_task.py` and press Enter
-  - Wait for the task to load and then in the terminal enter '+' to run the simulation
+  - Wait for the task to load and then in the terminal enter `+` to run the simulation
   - Enter `d` to see the demo in CoppeliaSim
 
 - Now the task will be running and the HSR robot arm will be reaching the ball in the environment.
