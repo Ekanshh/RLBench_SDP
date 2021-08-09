@@ -199,14 +199,4 @@ done
 rm -rf ./temp
 
 
-fancy_print "All nPackage Installation: SUCCESS"
-
-fancy_print "Running RLBench Toyota HSR task"
-
-source ~/.bashrc
-source ~/anaconda3/etc/profile.d/conda.sh
-eval "$(conda shell.bash hook)"
-conda activate RLBench_SDP
-cd RLBench/tools/
-
-
+fancy_print "All Packages Installated Successfully :)"
