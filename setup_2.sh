@@ -90,35 +90,6 @@ echo "##########################################################################
 # 4. RLBench
 ################################################################################"
 
-# Installing basic packages
-install_basic_packages
-
-# Check if anaconda is installed and create virtual env
-if [[ "$conda list" ]]; then  
-	fancy_print "Creating Conda VEnv"
-	yes | conda create --name RLBench_SDP python=3.8 --channel pkgs/main
-	source ~/anaconda3/etc/profile.d/conda.sh
-	conda activate RLBench_SDP
-	pip install opencv-python-headless
-else 
-	echo "FATAL: Failed to create conda virtual environment"
-	exit 1
-fi 
-
-
-# Installing CoppeliaSim
-if [[ '$find . -maxdepth 1 -type f -iname "CoppeliaSim*"' = "./CoppeliaSim*" ]]; then
-        echo "CoppeliaSim is already installed"
-else
-	download_coppeliasim 
-        path=$PWD/CoppeliaSim
-	echo export COPPELIASIM_ROOT=$path >> ~/.bashrc 
-	echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$COPPELIASIM_ROOT' >> ~/.bashrc
-	echo 'export QT_QPA_PLATFORM_PLUGIN_PATH=$COPPELIASIM_ROOT' >> ~/.bashrc
-	source ~/.bashrc
-	source ~/anaconda3/etc/profile.d/conda.sh
-    	conda activate RLBench_SDP
-fi
 
 # Installing PyRep
 if [[ '$find . -maxdepth 1 -type f -iname "PyRep"' = "./PyRep" ]]; then
@@ -127,15 +98,7 @@ else
 	fancy_print "Installing PyRep"
 	git clone https://github.com/stepjam/PyRep.git
 	cd ./PyRep/
-	source ~/.bashrc
-	source ~/anaconda3/etc/profile.d/conda.sh
-    	eval "$(conda shell.bash hook)"
-	conda activate RLBench_SDP
 	pip3 install -r requirements.txt
-	source ~/.bashrc
-	source ~/anaconda3/etc/profile.d/conda.sh
-	eval "$(conda shell.bash hook)"
-	conda activate RLBench_SDP
 	pip3 install .
 	cd ..
 fi
@@ -147,13 +110,7 @@ else
 	fancy_print "Installing RLBench"
 	git clone https://github.com/stepjam/RLBench.git
 	cd ./RLBench/
-	source ~/.bashrc
-	source ~/anaconda3/etc/profile.d/conda.sh
-    	conda activate RLBench_SDP
     	pip3 install -r requirements.txt
-	source ~/.bashrc
-	source ~/anaconda3/etc/profile.d/conda.sh
-    	conda activate RLBench_SDP
     	pip3 install .
     	cd ..
 fi
