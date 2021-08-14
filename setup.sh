@@ -84,11 +84,11 @@ function download_coppeliasim {
 
 
 
-./setup_1.sh
+./setup_files/setup_1.sh
 
 source ~/.bashrc
 source ~/anaconda3/etc/profile.d/conda.sh
 eval "$(conda shell.bash hook)"
 conda activate RLBench_SDP
 
-./setup_2.sh
+./setup_files/setup_2.sh
