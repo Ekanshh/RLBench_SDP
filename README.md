@@ -27,7 +27,7 @@ Team Members:
 	`cd RLBench_SDP`
 
 - Open terminal inside the repository directory and run:
-	`source checking.sh` 
+	`source setup.sh` 
 
 - Wait for a while (10-20 minutes approx) till the installation is complete and the terminal shows the successfull installation of all packages. 
 
