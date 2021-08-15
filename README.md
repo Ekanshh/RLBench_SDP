@@ -39,3 +39,7 @@ Team Members:
   - Enter `d` to see the demo in CoppeliaSim
 
 - Now the task will be running and the HSR robot arm will be reaching the ball in the environment.
+
+```
+Note: The `scripts` directory contains an example of a Lua script and a Python script
+```
