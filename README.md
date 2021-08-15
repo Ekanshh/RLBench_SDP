@@ -27,12 +27,11 @@ Team Members:
 	`cd RLBench_SDP`
 
 - Open terminal inside the repository directory and run:
-	`./setup.sh` 
+	`source setup.sh` 
 
 - Wait for a while (10-20 minutes approx) till the installation is complete and the terminal shows the successfull installation of all packages. 
 
 - Now in the existing terminal, run the following commands:
-  - conda activate RLBench_SDP
   - cd RLBench/tools/
   - `Python3 task_builder.py`
   - Enter the task name as: `test_hsr_task.py` and press Enter

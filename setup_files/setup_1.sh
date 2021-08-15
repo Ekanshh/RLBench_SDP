@@ -2,7 +2,7 @@
 
 
 # Exit immediately if any command exits with a nonzero exit value
-#set -e
+set -e
 
 function install_basic_packages {
 	sudo apt-get install figlet
@@ -82,13 +82,39 @@ function download_coppeliasim {
 	mv CoppeliaSim*/ CoppeliaSim
 }
 
+echo "##############################################################################
+# Following software components are required to run this script: ( in order)
+# 1. Anaconda (Install manually)
+# 2. CoppeliaSim
+# 3. PyRep
+# 4. RLBench
+################################################################################"
+
+# Installing basic packages
+install_basic_packages
+
+# Check if anaconda is installed and create virtual env
+if [[ "$conda list" ]]; then  
+	fancy_print "Creating Conda VEnv"
+	yes | conda create --name RLBench_SDP python=3.8 --channel pkgs/main
+	source ~/anaconda3/etc/profile.d/conda.sh
+	conda activate RLBench_SDP
+	pip install opencv-python-headless
+else 
+	echo "FATAL: Failed to create conda virtual environment"
+	exit 1
+fi 
 
 
-./setup_files/setup_1.sh
+# Installing CoppeliaSim
+if [[ '$find . -maxdepth 1 -type f -iname "CoppeliaSim*"' = "./CoppeliaSim*" ]]; then
+        echo "CoppeliaSim is already installed"
+else
+	download_coppeliasim 
+        path=$PWD/CoppeliaSim
+	echo export COPPELIASIM_ROOT=$path >> ~/.bashrc 
+	echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$COPPELIASIM_ROOT' >> ~/.bashrc
+	echo 'export QT_QPA_PLATFORM_PLUGIN_PATH=$COPPELIASIM_ROOT' >> ~/.bashrc
+fi
 
-source ~/.bashrc
-source ~/anaconda3/etc/profile.d/conda.sh
-eval "$(conda shell.bash hook)"
-conda activate RLBench_SDP
-
-./setup_files/setup_2.sh
+ echo "CoppeliaSim all set"

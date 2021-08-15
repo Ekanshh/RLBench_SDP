@@ -2,7 +2,7 @@
 
 
 # Exit immediately if any command exits with a nonzero exit value
-#set -e
+set -e
 
 function install_basic_packages {
 	sudo apt-get install figlet
@@ -82,13 +82,78 @@ function download_coppeliasim {
 	mv CoppeliaSim*/ CoppeliaSim
 }
 
+echo "##############################################################################
+# Following software components are required to run this script: ( in order)
+# 1. Anaconda (Install manually)
+# 2. CoppeliaSim
+# 3. PyRep
+# 4. RLBench
+################################################################################"
 
 
-./setup_files/setup_1.sh
+# Installing PyRep
+if [[ '$find . -maxdepth 1 -type f -iname "PyRep"' = "./PyRep" ]]; then
+        echo "PyRep is already installed"
+else
+	fancy_print "Installing PyRep"
+	git clone https://github.com/stepjam/PyRep.git
+	cd ./PyRep/
+	pip3 install -r requirements.txt
+	pip3 install .
+	cd ..
+fi
 
-source ~/.bashrc
-source ~/anaconda3/etc/profile.d/conda.sh
-eval "$(conda shell.bash hook)"
-conda activate RLBench_SDP
+# Installing RLBench
+if [[ '$find . -maxdepth 1 -type f -iname "CoppeliaSim*"' = "./CoppeliaSim*" ]]; then
+       echo "RLBench is already installed"
+else
+	fancy_print "Installing RLBench"
+	git clone https://github.com/stepjam/RLBench.git
+	cd ./RLBench/
+    	pip3 install -r requirements.txt
+    	pip3 install .
+    	cd ..
+fi
 
-./setup_files/setup_2.sh
+
+# Loop through all directories in the current directory
+for f in *; do
+
+# Check if there are any directories	
+    if [ -d "$f" ]; then
+
+	# Extract the directory names
+	extract=`echo $f | cut -c 1-11`
+	
+    	# Copy files into respective directories
+	# CoppeliaSim add-on files
+	if [[ "$extract" = "CoppeliaSim" ]]; then
+		cp -afr ./temp/CoppeliaSim/. ./CoppeliaSim/.
+		echo "success"
+	fi
+
+	# PyRep add-on files
+	if [[ "$extract" = "PyRep" ]]; then
+		cp -afr ./temp/PyRep/. ./PyRep/.
+		cd ./PyRep/.
+		python3 setup.py install --user
+		cd .. 
+		echo "success"
+	fi
+
+	# RLBench add-on files
+	if [[ "$extract" = "RLBench" ]]; then
+		cp -afr ./temp/RLBench/. ./RLBench/.
+		cd ./RLBench/.
+		python3 setup.py install --user
+		cd ..
+		echo "success"
+	fi		
+    fi
+done
+
+# Remove temp after installation
+rm -rf ./temp
+
+
+fancy_print "All Packages Installated Successfully :)"
